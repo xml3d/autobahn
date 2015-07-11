@@ -1,0 +1,29 @@
+{
+  "name": "fastlane",
+  "version": "0.0.1",
+  "devDependencies": {},
+  "dependencies": {
+    "analyses": "^0.2.1",
+    "es6-collections": "^0.5.2",
+    "optimist": "^0.6.1",
+    "pubsub-js": "^1.5.2"
+  },
+  "description": "Playground for compiler-based data processing for web applications",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xml3d/fastlane.js.git"
+  },
+  "author": "Kristian Sons",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xml3d/fastlane.js/issues"
+  },
+  "homepage": "https://github.com/xml3d/fastlane.js"
+}
