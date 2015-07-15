@@ -1,11 +1,13 @@
 {
   "name": "fastlane",
   "version": "0.0.1",
-  "devDependencies": {},
+  "devDependencies": {
+    "optimist": "^0.6.1"
+  },
   "dependencies": {
+    "promise": "^7.0.3",
     "analyses": "^0.2.1",
     "es6-collections": "^0.5.2",
-    "optimist": "^0.6.1",
     "pubsub-js": "^1.5.2"
   },
   "description": "Playground for compiler-based data processing for web applications",

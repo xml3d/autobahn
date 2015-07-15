@@ -1,4 +1,5 @@
 var Operator = require("./operators.js").Operator;
+var Promise = require('promise');
 
 /**
  * @param opt
@@ -37,27 +38,35 @@ var Node = function (opt) {
 Node.prototype = {
     /**
      * Get all fields this node can output
-     * todo(ksons): Use promises
      * todo(ksons): Add request parameter
      * @return {Map<string, { source: Node, field: Field }>}
      */
     get_output_info: function () {
-        var result = new Map();
-        this.prev.forEach(function (prev) {
-            var input = prev.get_output_info();
-            var I = input.entries(), next;
+        var that = this;
+        return Promise.all(this.prev.map(function (p) {
+            return p.get_output_info()
+        })).then(merge).then(function (result) {
+            var I = that.fields.entries(), next;
             // no for of yet
             while (!(next = I.next()).done) {
-                result.set(next.value[0], next.value[1]);
+                result.set(next.value[0], {source: that, field: next.value[1]});
             }
-        }, this);
-        var I = this.fields.entries(), next;
-        // no for of yet
-        while (!(next = I.next()).done) {
-            result.set(next.value[0], {source: this, field: next.value[1]});
-        }
-        return this.operator.get_output_info(result);
+            return that.operator.get_output_info(result);
+        });
     }
 };
+
+
+function merge(outs) {
+    var result = new Map();
+    outs.forEach(function (input) {
+        var I = input.entries(), next;
+        // no for of yet
+        while (!(next = I.next()).done) {
+            result.set(next.value[0], next.value[1]);
+        }
+    }, this);
+    return result;
+}
 
 module.exports = Node;

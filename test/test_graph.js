@@ -2,7 +2,6 @@ var assert = require("assert")
 
 var Node = require("../src/graph/node.js");
 var Graph = require("../src/graph/graph.js");
-var PubSub = require('pubsub-js');
 
 describe('Graph', function() {
     var graph;
