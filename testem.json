@@ -1,0 +1,17 @@
+{
+    "framework": "mocha",
+    "serve_files": [ "browserified.js" ],
+    "src_files": [
+        "hello.js",
+        "tests.js"
+    ],
+    "launchers": {
+        "Node": {
+            "command": "mocha --harmony test/test_*.js -R tap",
+            "protocol": "tap"
+        }
+    },
+    "before_tests": "browserify test/test_graph.js test/test_node.js test/test_operator.js -o browserified.js",
+    "on_exit": "rm browserified.js",
+    "launch_in_dev": [ "chrome", "node" ]
+}
