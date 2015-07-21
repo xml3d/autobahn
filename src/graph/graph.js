@@ -1,7 +1,6 @@
 var assert = require("assert");
 var Node = require("./node.js");
 var PubSub = require('pubsub-js');
-require("es6-collections");
 
 var Graph = function () {
     this._nodes = new Set();

@@ -1,5 +1,4 @@
 var Operator = require("./operators.js").Operator;
-var Promise = require('promise');
 
 /**
  * @param opt

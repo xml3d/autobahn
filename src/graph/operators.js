@@ -1,4 +1,3 @@
-var Promise = require('promise');
 var util = require("util");
 
 /**

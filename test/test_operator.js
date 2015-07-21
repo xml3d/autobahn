@@ -1,5 +1,4 @@
 var assert = require("assert");
-var Promise = require('promise');
 
 var Node = require("../src/graph/node.js");
 var Field = require("../src/graph/field.js");
