@@ -6,7 +6,7 @@ var util = require("util");
  */
 var Operator = function (opt) {
     opt = opt || {};
-    this.id = opt.id || "noname";
+    this.id = opt.id;
 };
 
 Operator.prototype = {
