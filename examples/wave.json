@@ -1,0 +1,74 @@
+{
+  "nodes": [
+    {
+      "name": "mesh",
+      "fields": {}
+    },
+    {
+      "name": "data",
+      "fields": {}
+    },
+    {
+      "name": "data#wave",
+      "fields": {
+        "strength": {
+          "info": {
+            "type": "float",
+            "static": false
+          },
+          "value": 0.009999999776482582
+        },
+        "wavelength": {
+          "info": {
+            "type": "float",
+            "static": false
+          },
+          "value": 40
+        },
+        "phase": {
+          "info": {
+            "type": "float",
+            "static": false
+          },
+          "value": 0
+        }
+      },
+      "operator": "xflow.mywave"
+    },
+    {
+      "name": "data",
+      "fields": {}
+    },
+    {
+      "name": "data#generatedGrid",
+      "fields": {
+        "size": {
+          "info": {
+            "type": "int",
+            "static": false
+          },
+          "value": 50
+        }
+      },
+      "operator": "xflow.mygrid"
+    }
+  ],
+  "edges": [
+    [
+      4,
+      3
+    ],
+    [
+      3,
+      2
+    ],
+    [
+      2,
+      1
+    ],
+    [
+      1,
+      0
+    ]
+  ]
+}
