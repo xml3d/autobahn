@@ -29,17 +29,18 @@ module.exports = function (graph) {
         var attributes = [];
         var name = "N" + i++;
 
-        node.name && attributes.push('label="' + node.name + '"');
+        node.name && attributes.push(label(node.name));
+        set_colors(1, attributes);
 
-        nodes.push(name +  "[" + attributes.join(",") + "]");
+        nodes.push(name + "[" + attributes.join(",") + "]");
         nameMap.set(node, name);
 
         var I = node.fields.entries(), next;
         while (!(next = I.next()).done) {
             var inputName = name + "_" + safe_name(next.value[0]);
-            nodes.push(inputName);
+            nodes.push(inputName + "[" + label(next.value[0]) + "]");
             edges.push(inputName + " -> " + name);
-         }
+        }
     });
 
     graph._nodes.forEach(function (node) {
@@ -68,3 +69,50 @@ function options2String(opt, name) {
 function safe_name(name) {
     return name.replace("-", "_");
 }
+
+function label(name) {
+    return 'label="' + name + '"';
+}
+
+function set_colors(nr, attributes) {
+    var color = COLORS[nr];
+    if (color) {
+        attributes.push('color="' + color.stroke + '"');
+        attributes.push('fillcolor="' + color.fill + '"');
+        attributes.push('fontcolor="' + color.font + '"');
+        attributes.push('style="filled"');
+    }
+}
+
+var COLORS = [
+    {
+        fill: "#9bbb59",
+        stroke: "#71893f",
+        font: "white"
+    },
+    {
+        fill: "#4F81BD",
+        stroke: "#385D8A",
+        font: "white"
+    },
+    {
+        fill: "#8064a2",
+        stroke: "#5c4776",
+        font: "white"
+    },
+    {
+        fill: "#c0504d",
+        stroke: "#632523",
+        font: "white"
+    },
+    {
+        fill: "#e3e3e3",
+        stroke: "#000000",
+        font: "black"
+    },
+    {
+        fill: "#f79646",
+        stroke: "#b66d31",
+        font: "white"
+    }
+];

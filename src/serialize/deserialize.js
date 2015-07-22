@@ -4,18 +4,28 @@ var Graph = require("../graph/graph.js");
 
 var assert = require("assert");
 
-module.exports = function (json) {
+module.exports = function (json, operatorMap) {
     assert(json && typeof json == "object");
+    assert(!operatorMap || operatorMap instanceof Map);
 
+    operatorMap = operatorMap || new Map();
     var result = new Graph();
     var positionMap = new Map();
 
     json.nodes.forEach(function (n, idx) {
         var node = new Node({name: n.name});
         positionMap.set(idx, node);
-        n.fields.forEach(function(f) {
-            result.set_field(node, f.name, new Field(f.value.info, f.value.value));
-        })
+        Object.keys(n.fields).forEach(function(name) {
+            var field = n.fields[name];
+            result.set_field(node, name, new Field(field.info, field.value));
+        });
+        if(n.operator) {
+            if(!operatorMap.has(n.operator)) {
+                console.error("operator not found:", n.operator);
+            } else {
+                node.operator = new operatorMap.get(n.operator)();
+            }
+        }
     });
 
     json.edges.forEach(function (e) {
