@@ -54,7 +54,7 @@ d3.sankey = function() {
     var curvature = .5;
 
     function link(d) {
-      var x0 = d.source.x + d.source.dx,
+      var x0 = d.source.x + (d.input ? 0 : d.source.dx),
           x1 = d.target.x,
           xi = d3.interpolateNumber(x0, x1),
           x2 = xi(curvature),
@@ -176,6 +176,7 @@ d3.sankey = function() {
         return (size[1] - (nodes.length - 1) * nodePadding) / d3.sum(nodes, value);
       });
 
+      ky = Math.min(ky, 12.5);
       nodesByBreadth.forEach(function(nodes) {
         nodes.forEach(function(node, i) {
           node.y = i;

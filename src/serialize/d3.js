@@ -10,6 +10,11 @@ var serialize = function (graph) {
 
         graph._nodes.forEach(function (node) {
             var n = {name: node.name};
+
+            if(node.operator && node.operator.id) {
+                n.operator = node.operator.id;
+            }
+
             var idx = d3.nodes.length;
             positionMap.set(node, idx);
             d3.nodes.push(n);
@@ -25,7 +30,7 @@ var serialize = function (graph) {
                 node.next.forEach(function(next) {
                     output.forEach(function (value, key) {
                         d3.links.push({
-                            name: key, target: positionMap.get(next), source: positionMap.get(node), value: 2
+                            name: key, target: positionMap.get(next), source: positionMap.get(node), value: 2, input: node.fields.has(key)
                         });
                 });
 

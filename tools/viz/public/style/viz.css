@@ -2,6 +2,8 @@
 
 body {
     font-family: 'PT Sans', sans-serif;
+    background: rgb(65,65,65);
+    color: #fff;
 }
 
 #chart {
@@ -10,7 +12,7 @@ body {
 
 .node rect {
     cursor: move;
-    fill-opacity: .9;
+    fill-opacity: 1;
     shape-rendering: geometricPrecision;
     fill: #FFFFFF;
     stroke: #222222;
@@ -19,12 +21,20 @@ body {
 
 .node text {
     pointer-events: none;
-    text-shadow: 0 1px 0 #fff;
+    text-shadow: 0 1px 0 #000;
+    font-size: 0.9rem;
+    fill: #fff;
+}
+
+.node text.fa {
+    fill: #000;
+    text-shadow: none;
 }
 
 .link {
     fill: none;
     stroke: #000;
+    stroke-linecap: round;
     stroke-opacity: .8;
 }
 
