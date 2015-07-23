@@ -23,7 +23,7 @@ module.exports = function (json, operatorMap) {
             if(!operatorMap.has(n.operator)) {
                 console.error("operator not found:", n.operator);
             } else {
-                node.operator = new operatorMap.get(n.operator)();
+                node.operator = operatorMap.get(n.operator);
             }
         }
     });
