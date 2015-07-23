@@ -8,7 +8,7 @@ var margin = {top: 1, right: 1, bottom: 6, left: 1},
     width = 960 - margin.left - margin.right,
     height = 300 - margin.top - margin.bottom;
 
-var color = d3.scale.category10();
+var color = d3.scale.category20();
 
 var svg = d3.select("#chart").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -33,7 +33,7 @@ var path = sankey.link();
     .enter().append("path")
       .attr("class", "link")
       .attr("d", path)
-      .style("stroke-width", function(d) { return Math.max(1, d.dy ); })
+      .style("stroke-width", function(d) { return Math.max(1, d.dy * 0.4); })
       .style("stroke", function(d) { return d.color = color(d.name.replace(/ .*/, "")); })
       .sort(function(a, b) { return b.dy - a.dy; });
 
