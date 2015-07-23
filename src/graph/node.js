@@ -50,7 +50,7 @@ Node.prototype = {
             while (!(next = I.next()).done) {
                 result.set(next.value[0], {source: that, field: next.value[1]});
             }
-            return that.operator.get_output_info(result);
+            return that.operator.get_output_info(result, that);
         });
     }
 };
